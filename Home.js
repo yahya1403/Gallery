@@ -37,39 +37,18 @@ export default function Home() {
                 <Picker.Item label="4" value={4} />
             </Picker>
             {
-                dropd == 2 ?
-                    <FlatList
-                        data={users}
-                        key={'_'}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item }) => (
-                            <RenderImg item={item} dw={dropd} submitHandler={submitHandler} pressHandler={pressHandler} />
-                        )}
-                        horizontal={false}
-                        numColumns={2}
-                    />
-                    : (dropd == 3) ?
-                        <FlatList
-                            data={users}
-                            key={'#'}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item }) => (
-                                <RenderImg item={item} dw={dropd} submitHandler={submitHandler} pressHandler={pressHandler} />
-                            )}
-                            horizontal={false}
-                            numColumns={3}
-                        />
-                        :
-                        <FlatList
-                            data={users}
-                            key={'##'}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item }) => (
-                                <RenderImg item={item} dw={dropd} submitHandler={submitHandler} pressHandler={pressHandler} />
-                            )}
-                            horizontal={false}
-                            numColumns={4}
-                        />
+
+                <FlatList
+                    data={users}
+                    key={dropd}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => (
+                        <RenderImg item={item} dw={dropd} submitHandler={submitHandler} pressHandler={pressHandler} />
+                    )}
+                    horizontal={false}
+                    numColumns={dropd}
+                />
+
             }
 
             <StatusBar hidden />
