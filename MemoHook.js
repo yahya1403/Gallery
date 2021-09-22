@@ -14,8 +14,8 @@ export default function MemoHook() {
         <View>
             <Text> Count: {state.count}</Text>
             <Text>{isEven ? "even" : "odd"}</Text>
-            <Button onClick={() => setCountone(countone + 1)} title="one"></Button>
-            <Button onClick={() => setCounttwo(counttwo + 1)} title="two"></Button>
+            <Button onPress={() => setCountone(countone + 1)} title="one"></Button>
+            <Button onPress={() => setCounttwo(counttwo + 1)} title="two"></Button>
         </View>
     );
 }

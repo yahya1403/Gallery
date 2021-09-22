@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { View, Button, Text } from 'react-native';
-const initialState = { count: 0 };
+const initialState = 0;
 
 function reducer(state, action) {
     switch (action) {
         case 'increment':
-            return { count: state.count + 1 };
+            //console.log("hi");
+            return state = state + 1;
         case 'decrement':
-            return { count: state.count - 1 };
+            return state = state - 1;
         default:
-            return state.count;
+            return state;
     }
 }
 
 export default function ReducerCount() {
     const [state, dispatch] = useReducer(reducer, initialState);
     return (
-        <View>
-            <Text> Count: {state.count}</Text>
-            <Button onClick={() => dispatch('decrement')} title="-"></Button>
-            <Button onClick={() => dispatch('increment')} title="+"></Button>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+            <Text> Count: {state}</Text>
+            <Button onPress={() => { dispatch('decrement'); }} title="-"></Button>
+            <Button onPress={() => dispatch('increment')} title="+"></Button>
         </View>
     );
 }
