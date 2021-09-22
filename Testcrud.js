@@ -13,20 +13,19 @@ export default function Testcrud() {
     }, []);
     async function getTask() {
         db.ref('/todos').on('value', querySnapShot => {
-            // console.log(querySnapShot);
             let datas = querySnapShot.val() ? querySnapShot.val() : {};
             let todoItems = { ...datas };
             (querySnapShot.val()) ? setData(todoItems) : ''
             setK(Object.keys(datas));
-
-            // db.ref('/todos').remove();
         });
     }
     const addTask = () => {
         if (task != '') {
             db.ref('/todos').push({
+
                 task: task,
                 is_delete: false
+
             });
             getTask();
             setTask("");
@@ -42,9 +41,7 @@ export default function Testcrud() {
         return (
             <View key={id} style={{ flex: 0.7, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
                 <Text style={{ fontSize: 30 }}>{data[id].task}</Text>
-                <Icon raised name='trash' type='font-awesome' color='#f50' />
-                {//onPress={() => db.ref('/todos').update({[id]: { is_delete:true}})} 
-                }
+                <Icon raised name='trash' type='font-awesome' color='#f50' onPress={() => { db.ref('/todos').child(id).remove(); ToastAndroid.show("Successfully Deleted", ToastAndroid.SHORT) }} />
 
             </View>
         )
